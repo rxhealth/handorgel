@@ -10,3 +10,10 @@ window.accordion3 = new Handorgel(document.querySelector('.single-select-not-col
   multiSelectable: false,
   collapsible: false
 })
+
+window.accordion4 = new Handorgel(document.querySelector('.nested-outer'))
+
+window.accordion4Nested = Array.prototype.map.call(
+  document.querySelectorAll('.nested-inner'),
+  element => new Handorgel(element, { multiSelectable: false })
+)

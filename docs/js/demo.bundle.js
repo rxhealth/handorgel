@@ -625,8 +625,8 @@
       key: "update",
       value: function update() {
         this.folds = [];
-        var headerElements = typeof this.options.headerElements === 'string' ? this.element.querySelectorAll(this.options.headerElements) : this.options.headerElements;
-        var contentElements = typeof this.options.contentElements === 'string' ? this.element.querySelectorAll(this.options.contentElements) : this.options.contentElements;
+        var headerElements = this._queryElements(this.options.headerElements);
+        var contentElements = this._queryElements(this.options.contentElements);
         for (var i = 0; i < headerElements.length; i = i + 1) {
           // get fold instance if there is already one
           var fold = headerElements[i].handorgelFold;
@@ -639,6 +639,26 @@
             this.folds.push(fold);
           }
         }
+      }
+
+      /**
+       * Resolves an elements option (selector string or element list) and,
+       * for selectors, drops elements which belong to a nested accordion,
+       * i.e. which are placed inside another matched content element.
+       */
+    }, {
+      key: "_queryElements",
+      value: function _queryElements(option) {
+        if (typeof option !== 'string') {
+          return option;
+        }
+        var elements = Array.prototype.slice.call(this.element.querySelectorAll(option));
+        var contents = Array.prototype.slice.call(this.element.querySelectorAll(this.options.contentElements));
+        return elements.filter(function (element) {
+          return !contents.some(function (content) {
+            return content !== element && content.contains(element);
+          });
+        });
       }
     }, {
       key: "focus",
@@ -742,6 +762,12 @@
   window.accordion3 = new Handorgel(document.querySelector('.single-select-not-collapsible'), {
     multiSelectable: false,
     collapsible: false
+  });
+  window.accordion4 = new Handorgel(document.querySelector('.nested-outer'));
+  window.accordion4Nested = Array.prototype.map.call(document.querySelectorAll('.nested-inner'), function (element) {
+    return new Handorgel(element, {
+      multiSelectable: false
+    });
   });
 
 }());

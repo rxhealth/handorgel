@@ -213,6 +213,94 @@
         </div>
       </div>
 
+      <div class="example">
+        <h3>Nested accordions</h3>
+        <p>Accordions can be nested. Every accordion only manages its own headers and contents, nested ones are ignored, so options like <code>multiSelectable: false</code> only apply to the accordion they are set on.</p>
+
+        <pre><code class="javascript">new handorgel(document.querySelector('.nested-outer'))
+
+document.querySelectorAll('.nested-inner').forEach(function (element) {
+  new handorgel(element, {
+    multiSelectable: false
+  })
+})</code></pre>
+
+        <div class="handorgel nested-outer">
+          <h3 class="handorgel__header">
+            <button class="handorgel__header__button">
+              Accordion A
+            </button>
+          </h3>
+          <div class="handorgel__content">
+            <div class="handorgel__content__inner">
+              <div class="handorgel nested-inner">
+            <h3 class="handorgel__header">
+              <button class="handorgel__header__button">
+                Accordion A.1
+              </button>
+            </h3>
+            <div class="handorgel__content">
+              <div class="handorgel__content__inner">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              </div>
+            </div>
+            <h3 class="handorgel__header">
+              <button class="handorgel__header__button">
+                Accordion A.2
+              </button>
+            </h3>
+            <div class="handorgel__content">
+              <div class="handorgel__content__inner">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              </div>
+            </div>
+            <h3 class="handorgel__header">
+              <button class="handorgel__header__button">
+                Accordion A.3
+              </button>
+            </h3>
+            <div class="handorgel__content">
+              <div class="handorgel__content__inner">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+          <h3 class="handorgel__header">
+            <button class="handorgel__header__button">
+              Accordion B
+            </button>
+          </h3>
+          <div class="handorgel__content">
+            <div class="handorgel__content__inner">
+              <div class="handorgel nested-inner">
+            <h3 class="handorgel__header">
+              <button class="handorgel__header__button">
+                Accordion B.1
+              </button>
+            </h3>
+            <div class="handorgel__content">
+              <div class="handorgel__content__inner">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              </div>
+            </div>
+            <h3 class="handorgel__header">
+              <button class="handorgel__header__button">
+                Accordion B.2
+              </button>
+            </h3>
+            <div class="handorgel__content">
+              <div class="handorgel__content__inner">
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
