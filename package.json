@@ -78,6 +78,7 @@
     "rollup-plugin-babel": "^4.1.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
+    "sass": "^1.103.1",
     "stylelint": "^9.9.0",
     "stylelint-config-idiomatic-order": "^6.2.0",
     "stylelint-config-prettier": "^4.0.0",
@@ -85,8 +86,7 @@
     "uglify-es": "^3.3.9"
   },
   "dependencies": {
-    "ev-emitter": "^1.1.1",
-    "sass": "^1.63.3"
+    "ev-emitter": "^1.1.1"
   },
   "browserslist": [
     "> 5%",
@@ -127,5 +127,8 @@
   "bugs": {
     "url": "https://github.com/oncode/handorgel/issues"
   },
-  "homepage": "https://github.com/oncode/handorgel"
+  "homepage": "https://github.com/oncode/handorgel",
+  "overrides": {
+    "immutable": "^5.1.5"
+  }
 }
