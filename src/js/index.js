@@ -27,15 +27,8 @@ export default class Handorgel extends EventEmitter {
   update() {
     this.folds = []
 
-    const headerElements =
-      typeof this.options.headerElements === 'string'
-        ? this.element.querySelectorAll(this.options.headerElements)
-        : this.options.headerElements
-
-    const contentElements =
-      typeof this.options.contentElements === 'string'
-        ? this.element.querySelectorAll(this.options.contentElements)
-        : this.options.contentElements
+    const headerElements = this._queryElements(this.options.headerElements)
+    const contentElements = this._queryElements(this.options.contentElements)
 
     for (let i = 0; i < headerElements.length; i = i + 1) {
       // get fold instance if there is already one
@@ -50,6 +43,26 @@ export default class Handorgel extends EventEmitter {
         this.folds.push(fold)
       }
     }
+  }
+
+  /**
+   * Resolves an elements option (selector string or element list) and,
+   * for selectors, drops elements which belong to a nested accordion,
+   * i.e. which are placed inside another matched content element.
+   */
+  _queryElements(option) {
+    if (typeof option !== 'string') {
+      return option
+    }
+
+    const elements = Array.prototype.slice.call(this.element.querySelectorAll(option))
+    const contents = Array.prototype.slice.call(
+      this.element.querySelectorAll(this.options.contentElements)
+    )
+
+    return elements.filter(element => {
+      return !contents.some(content => content !== element && content.contains(element))
+    })
   }
 
   focus(target) {
